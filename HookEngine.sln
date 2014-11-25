@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookEngine", "HookEngine\HookEngine.vcxproj", "{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookEngineTest", "HookEngineTest\HookEngineTest.vcxproj", "{4AC5BE19-649C-4837-895F-2D48CF12BEF5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1} = {AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}
+		{BA193E15-3645-4A23-96DE-13791CA2FA61} = {BA193E15-3645-4A23-96DE-13791CA2FA61}
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E} = {CC88A093-2D7A-4521-8EA5-E2478212A71E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleDll", "SampleDll\SampleDll.vcxproj", "{BA193E15-3645-4A23-96DE-13791CA2FA61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E} = {CC88A093-2D7A-4521-8EA5-E2478212A71E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleDll2", "SampleDll2\SampleDll2.vcxproj", "{CC88A093-2D7A-4521-8EA5-E2478212A71E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug-MD|Win32 = Debug-MD|Win32
+		Debug-MT|Win32 = Debug-MT|Win32
+		Release-MD|Win32 = Release-MD|Win32
+		Release-MT|Win32 = Release-MT|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Debug-MD|Win32.ActiveCfg = Debug-MD|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Debug-MD|Win32.Build.0 = Debug-MD|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Debug-MT|Win32.ActiveCfg = Debug-MT|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Debug-MT|Win32.Build.0 = Debug-MT|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Release-MD|Win32.ActiveCfg = Release-MD|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Release-MD|Win32.Build.0 = Release-MD|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Release-MT|Win32.ActiveCfg = Release-MT|Win32
+		{AE01760E-8E1E-4BD2-90C5-2C64EB1606A1}.Release-MT|Win32.Build.0 = Release-MT|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Debug-MD|Win32.ActiveCfg = Debug-MD|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Debug-MD|Win32.Build.0 = Debug-MD|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Debug-MT|Win32.ActiveCfg = Debug-MT|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Debug-MT|Win32.Build.0 = Debug-MT|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Release-MD|Win32.ActiveCfg = Release-MD|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Release-MD|Win32.Build.0 = Release-MD|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Release-MT|Win32.ActiveCfg = Release-MT|Win32
+		{4AC5BE19-649C-4837-895F-2D48CF12BEF5}.Release-MT|Win32.Build.0 = Release-MT|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Debug-MD|Win32.ActiveCfg = Debug-MD|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Debug-MD|Win32.Build.0 = Debug-MD|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Debug-MT|Win32.ActiveCfg = Debug-MT|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Debug-MT|Win32.Build.0 = Debug-MT|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Release-MD|Win32.ActiveCfg = Release-MD|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Release-MD|Win32.Build.0 = Release-MD|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Release-MT|Win32.ActiveCfg = Release-MT|Win32
+		{BA193E15-3645-4A23-96DE-13791CA2FA61}.Release-MT|Win32.Build.0 = Release-MT|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Debug-MD|Win32.ActiveCfg = Debug-MD|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Debug-MD|Win32.Build.0 = Debug-MD|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Debug-MT|Win32.ActiveCfg = Debug-MT|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Debug-MT|Win32.Build.0 = Debug-MT|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Release-MD|Win32.ActiveCfg = Release-MD|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Release-MD|Win32.Build.0 = Release-MD|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Release-MT|Win32.ActiveCfg = Release-MT|Win32
+		{CC88A093-2D7A-4521-8EA5-E2478212A71E}.Release-MT|Win32.Build.0 = Release-MT|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
