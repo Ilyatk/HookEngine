@@ -224,7 +224,7 @@ TEST(TemplateHook, deleteReceiver2)
   int afterHookresult = targetDeleteReceiver2(20);
   ASSERT_EQ(94, afterHookresult);
 
-  hook->assignHook(0); 
+  hook->assignHook(nullptr); 
 
   int afterDeleteResult = targetDeleteReceiver2(20);
   ASSERT_EQ(64, afterDeleteResult);

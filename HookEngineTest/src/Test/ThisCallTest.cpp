@@ -4,6 +4,7 @@
 
 #include <memory>
 
+#pragma optimize("", off)
 class SomeSimpleClass {
 public:
   SomeSimpleClass() : a(10), g(15) {};
@@ -20,6 +21,7 @@ public:
   int a;
   int g;
 };
+#pragma optimize("", on)
 
 TEST(ThisCall, sample)
 {

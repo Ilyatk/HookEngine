@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug-MD|Win32">
       <Configuration>Debug-MD</Configuration>
@@ -27,26 +27,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-MD|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-MT|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-MD|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-MT|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -105,7 +105,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;$(SolutionDir)!bin\HookEngine\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestd.lib;HookEngineMDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtestX86-md-d.lib;HookEngineMDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl\$(Configuration)\SampleDll.dll" "$(SolutionDir)!bin\HookEngineTest\$(Configuration)"
@@ -127,7 +127,7 @@ xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl2\$(Configuration)\SampleDll2.
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;$(SolutionDir)!bin\HookEngine\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestmtd.lib;HookEngineMTd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtestX86-mt-d.lib;HookEngineMTd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
@@ -154,7 +154,8 @@ xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl2\$(Configuration)\SampleDll2.
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;$(SolutionDir)!bin\HookEngine\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtest.lib;HookEngineMD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtestX86-md.lib;HookEngineMD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl\$(Configuration)\SampleDll.dll" "$(SolutionDir)!bin\HookEngineTest\$(Configuration)"
@@ -180,7 +181,8 @@ xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl2\$(Configuration)\SampleDll2.
       <OptimizeReferences>true</OptimizeReferences>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>$(ProjectDir)lib;$(SolutionDir)!bin\HookEngine\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>gtestmt.lib;HookEngineMT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtestX86-mt.lib;HookEngineMT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /I /E /F /R /Y "$(SolutionDir)!bin\SampleDLl\$(Configuration)\SampleDll.dll" "$(SolutionDir)!bin\HookEngineTest\$(Configuration)"
