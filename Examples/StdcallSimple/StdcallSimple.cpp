@@ -19,7 +19,7 @@ void main()
   HMODULE user32 = GetModuleHandleA("User32.dll");
   uint32_t original = (uint32_t)GetProcAddress(user32, "MessageBoxA");
 
-  HookEngine::HookEngine::instance()->installHook(original, (uint32_t)MessageBoxAHook, &mesageBoxInfo);
+  HookEngine::instance()->installHook(original, (uint32_t)MessageBoxAHook, &mesageBoxInfo);
 
   MessageBoxA(0, "Not hooked yet", "Warning", MB_OK);
 }

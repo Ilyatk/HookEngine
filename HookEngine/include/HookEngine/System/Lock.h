@@ -13,6 +13,9 @@ namespace HookEngine {
       Lock(CriticalSection& cs);
       ~Lock();
 
+      Lock(const Lock&);
+      Lock& operator=(const Lock &);
+
     private:
       CRITICAL_SECTION& _cs;
     };

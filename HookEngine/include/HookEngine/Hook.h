@@ -3,15 +3,14 @@
 #include <HookEngine/HookInfo.h>
 #include <HookEngine/HookEngine.h>
 
-#include <HookEngine/Profileitem.h>
-
 #include <functional>
-
-#define DISABLE_PROFILER 1
 
 namespace HookEngine {
   struct _Empty {};
 
+#ifdef _WIN64
+  struct Win64 {};
+#else
   struct Stdcall {};
   struct Fastcall {};
   struct Thiscall {};
@@ -28,6 +27,8 @@ namespace HookEngine {
   {
     enum { Value = 1 };
   };
+
+#endif
 }
 
 #define STRINGIFY(x) #x
@@ -205,6 +206,49 @@ namespace HookEngine {
 #define _tailDefinition_2(x)				_tailDefinition_3(x), x
 #define _tailDefinition_1(x)				_tailDefinition_2(x), x
 #define _tailDefinition_0(x)				_tailDefinition_1(x), x
+
+#define _argDefinition_win64call0
+#define _argDefinition_win64call1  
+#define _argDefinition_win64call2
+#define _argDefinition_win64call3  
+#define _argDefinition_win64call4  
+#define _argDefinition_win64call5  Arg5
+#define _argDefinition_win64call6  _argDefinition_win64call5, Arg6
+#define _argDefinition_win64call7  _argDefinition_win64call6, Arg7
+#define _argDefinition_win64call8  _argDefinition_win64call7, Arg8
+#define _argDefinition_win64call9  _argDefinition_win64call8, Arg9
+#define _argDefinition_win64call10  _argDefinition_win64call9, Arg10
+#define _argDefinition_win64call11  _argDefinition_win64call10, Arg11
+#define _argDefinition_win64call12  _argDefinition_win64call11, Arg12
+
+#define _argWithValueDefinition_win64call0
+#define _argWithValueDefinition_win64call1  
+#define _argWithValueDefinition_win64call2  
+#define _argWithValueDefinition_win64call3  
+#define _argWithValueDefinition_win64call4  
+#define _argWithValueDefinition_win64call5  Arg5 a5
+#define _argWithValueDefinition_win64call6  _argWithValueDefinition_win64call5, Arg6 a6
+#define _argWithValueDefinition_win64call7  _argWithValueDefinition_win64call6, Arg7 a7
+#define _argWithValueDefinition_win64call8  _argWithValueDefinition_win64call7, Arg8 a8
+#define _argWithValueDefinition_win64call9  _argWithValueDefinition_win64call8, Arg9 a9
+#define _argWithValueDefinition_win64call10  _argWithValueDefinition_win64call9, Arg10 a10
+#define _argWithValueDefinition_win64call11  _argWithValueDefinition_win64call10, Arg11 a11
+#define _argWithValueDefinition_win64call12  _argWithValueDefinition_win64call11, Arg12 a12
+
+#define _valueDefinition_win64call0
+#define _valueDefinition_win64call1 
+#define _valueDefinition_win64call2 
+#define _valueDefinition_win64call3 
+#define _valueDefinition_win64call4 
+#define _valueDefinition_win64call5 a5
+#define _valueDefinition_win64call6 _valueDefinition_win64call5, a6
+#define _valueDefinition_win64call7 _valueDefinition_win64call6, a7
+#define _valueDefinition_win64call8 _valueDefinition_win64call7, a8
+#define _valueDefinition_win64call9 _valueDefinition_win64call8, a9
+#define _valueDefinition_win64call10 _valueDefinition_win64call9, a10
+#define _valueDefinition_win64call11 _valueDefinition_win64call10, a11
+#define _valueDefinition_win64call12 _valueDefinition_win64call11, a12
+
 
 #define _HOOK_INCLUDE_ERROR_GUARD_
 
