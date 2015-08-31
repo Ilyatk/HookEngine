@@ -1,14 +1,12 @@
 #include <HookEngine/HookInfo.h>
 
 namespace HookEngine {
-
   HookInfo::HookInfo()
     : _beforePtr(0)
     , _afterPtr(0)
     , _hookPtr(0)
     , _prologPtr(0)
     , _receiver(0)
-    , _baseOffset(0)
   {
   }
 
@@ -16,32 +14,32 @@ namespace HookEngine {
   {
   }
 
-  uint32_t HookInfo::beforePtr() const
+  uintptr_t HookInfo::beforePtr() const
   {
     return this->_beforePtr;
   }
 
-  void HookInfo::setBeforePtr(uint32_t value)
+  void HookInfo::setBeforePtr(uintptr_t value)
   {
     this->_beforePtr = value;
   }
 
-  uint32_t HookInfo::afterPtr() const
+  uintptr_t HookInfo::afterPtr() const
   {
     return this->_afterPtr;
   }
 
-  void HookInfo::setAfterPtr(uint32_t value)
+  void HookInfo::setAfterPtr(uintptr_t value)
   {
     this->_afterPtr = value;
   }
 
-  uint32_t HookInfo::hookPtr() const
+  uintptr_t HookInfo::hookPtr() const
   {
     return this->_hookPtr;
   }
 
-  void HookInfo::setHookPtr(uint32_t value)
+  void HookInfo::setHookPtr(uintptr_t value)
   {
     this->_hookPtr = value;
   }
@@ -56,12 +54,12 @@ namespace HookEngine {
     this->_receiver = value;
   }
 
-  uint32_t HookInfo::prologPtr() const
+  uintptr_t HookInfo::prologPtr() const
   {
     return this->_prologPtr;
   }
 
-  void HookInfo::setPrologPtr(uint32_t value)
+  void HookInfo::setPrologPtr(uintptr_t value)
   {
     this->_prologPtr = value;
   }

@@ -50,7 +50,7 @@ void main()
 
   // Some trick to cast member function pointer to uint32_t
   uint32_t original = HookEngine::ClassFuntionPointerToUint32(&TargetClass::showMessage);
-  HookEngine::HookEngine::instance()->fasthook(original, (uint32_t)ShowMessageHook);
+  HookEngine::instance()->fasthook(original, (uint32_t)ShowMessageHook);
 
   target.showMessage(0, "Not hooked yet", "Warning", MB_OK);
 }
