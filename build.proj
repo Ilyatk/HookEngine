@@ -4,29 +4,29 @@
   <Target Name="BuildRelease_x86">
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=Win32;PlatformToolset=v100" />
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=Win32;PlatformToolset=v100"/>
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=Win32;PlatformToolset=v120" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=Win32;PlatformToolset=v120"/>
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=Win32;PlatformToolset=v120_xp" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=Win32;PlatformToolset=v120_xp"/>
   </Target>
   
   <Target Name="BuildRelease_x64">
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=x64;PlatformToolset=v100" />
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=x64;PlatformToolset=v100" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=x64;PlatformToolset=v120" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=x64;PlatformToolset=v120" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release;Platform=x64;PlatformToolset=v120_xp" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Release-MT;Platform=x64;PlatformToolset=v120_xp" />
   </Target>
 
   <Target Name="BuildDebug_x86">
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=Win32;PlatformToolset=v100" />
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=Win32;PlatformToolset=v100" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=Win32;PlatformToolset=v120" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=Win32;PlatformToolset=v120" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=Win32;PlatformToolset=v120_xp" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=Win32;PlatformToolset=v120_xp" />
   </Target>
 
   <Target Name="BuildDebug_x64">
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=x64;PlatformToolset=v100" />
     <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=x64;PlatformToolset=v100" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=x64;PlatformToolset=v120" />
-    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=x64;PlatformToolset=v120" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug;Platform=x64;PlatformToolset=v120_xp" />
+    <MSBuild Projects="HookEngine.sln" Properties="Configuration=Debug-MT;Platform=x64;PlatformToolset=v120_xp" />
   </Target>
 
 </Project>
