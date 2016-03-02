@@ -71,6 +71,38 @@ namespace HookEngine {
     return true;
   }
 
+
+  bool CodeCaveFinder::getCodeCave(uintptr_t *cave)
+  {
+    if (cave == NULL)
+      return false;
+
+    CaveInfo *caveInfo = NULL;
+
+    auto it = this->_unattachedCaves.begin();
+    auto end = this->_unattachedCaves.end();
+    for (; it != end; ++it) {
+      CaveInfo *cave = *it;
+      if (cave->unusedSize < CAVE_SIZE)
+        continue;
+
+      caveInfo = cave;
+      break;
+    }
+
+    if (!caveInfo) {
+      LPVOID cave = VirtualAlloc(nullptr, this->_pageSize, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+      if (!cave)
+        return false;
+
+      caveInfo = new CaveInfo((uintptr_t)cave, (uintptr_t)cave, this->_pageSize, this->_pageSize);
+      this->_unattachedCaves.push_front(caveInfo);
+    }
+
+    *cave = this->consume(caveInfo, CAVE_SIZE);
+    return true;
+  }
+
   bool CodeCaveFinder::allocateCave(uintptr_t realAddr, CaveInfo **caveInfo)
   {
     uintptr_t epsilon = 2000000000;

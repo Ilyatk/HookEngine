@@ -119,6 +119,34 @@ namespace HookEngine {
       return curLen >= minimumSize ? curLen : 0;
     }
 
+    bool skipJumps(uintptr_t& realAddr)
+    {
+      uintptr_t addr = realAddr;
+      const int maxJumpCount = 5;
+      for (int i = 0; i < maxJumpCount; ++i) {
+        if (*(uint8_t*)(addr) == 0xE9) {
+          int32_t offset = *(int32_t*)(addr + 1);
+          addr = addr + offset + 5;
+          continue;
+        }
+
+        if (*(uint8_t*)(addr) == 0x48
+          && *(uint8_t*)(addr + 1) == 0xff
+          && *(uint8_t*)(addr + 2) == 0x25) {
+
+          int32_t offset = *(int32_t*)(addr + 3);
+          uintptr_t functionStartPointer = addr + offset + 7;
+          addr = *(uintptr_t*)(functionStartPointer);
+          continue;
+        }
+
+        realAddr = addr;
+        return true;
+      }
+
+      return false;
+    }
+
     bool installHook(uintptr_t realAddr, uintptr_t hookAddr, HookInfo **hookInfo)
     {
       System::Lock lock(this->_criticalSection);
@@ -208,6 +236,89 @@ namespace HookEngine {
 
       return true;
     }
+
+    bool installHookForTemplateLongJump(uintptr_t realAddr, uintptr_t hookAddr, HookInfo** hookInfo /*= nullptr*/)
+    {
+      System::Lock lock(this->_criticalSection);
+
+      HookInfo* oldHook;
+      if (this->getHook(realAddr, &oldHook)) {
+        if (hookInfo != NULL)
+          *hookInfo = oldHook;
+
+        return false;
+      }
+      
+      uintptr_t fixedAddr = realAddr;
+      if (!this->skipJumps(fixedAddr))
+        return false;
+
+      int moveableSize = this->getCodeSize(fixedAddr, 12);
+      if (moveableSize <= 0)
+        return false;
+
+      uintptr_t cave;
+      if (!this->_codeCaveFinder.getCodeCave(&cave))
+        return false;
+      
+      /*
+         ---- CAVE Size = 0x100 -----
+         0x00
+         .
+         .     Hook prolog
+         .
+         0xA0
+         .
+         .     Original function prolog
+         .
+         0xD0 
+         .     Jump back address
+         0xD8
+         . 
+      */
+      uintptr_t hookProlog = cave;
+      uintptr_t afterHook = cave + 0xA0;
+      char* hookPrologPtr = reinterpret_cast<char*>(cave);
+      char* afterHookPtr = reinterpret_cast<char*>(afterHook);
+      uintptr_t* jumpBackAddress = reinterpret_cast<uintptr_t*>(cave + 0xD0);
+
+      // UNDONE Тут бы надо проверить опкоды на возможность перемещения их
+      memcpy(afterHookPtr, (LPVOID)fixedAddr, moveableSize);
+      
+      *jumpBackAddress = fixedAddr + moveableSize;
+
+      uintptr_t jumpBack = afterHook + moveableSize;
+      *(uint16_t*)(jumpBack) = 0x25FF; // jmp [...]
+      *(int32_t*)(jumpBack + 2) = (int32_t)((uintptr_t)jumpBackAddress - jumpBack - 6);
+
+      HookInfo* result = new HookInfo();
+      result->setHookPtr(hookAddr);
+      result->setBeforePtr(realAddr);
+      result->setAfterPtr(afterHook);
+
+      // INFO prolog:
+      memcpy(hookPrologPtr, templateProlog, sizeof(templateProlog));
+      *(uintptr_t*)(hookPrologPtr + 0x3C) = (uintptr_t)result;
+      *(uintptr_t*)(hookPrologPtr + 0x4F) = hookAddr;
+
+      WriteableProtect protect(fixedAddr, moveableSize + 5);
+
+      // long jump:
+      // 00007FF855426A05 | 48 B8 08 07 06 05 04 03 02 01 | mov rax, 102030405060708 |
+      // 00007FF855426A0F | FF E0 | jmp rax |
+
+      *(uint16_t*)(fixedAddr) = 0xB848; // mov rax, ...
+      *(uintptr_t*)(fixedAddr + 2) = hookProlog;
+      *(uint16_t*)(fixedAddr + 2 + sizeof(uintptr_t)) = 0xE0FF; // jmp rax
+
+      this->_hookes[fixedAddr] = result;
+
+      if (hookInfo != NULL)
+        *hookInfo = result;
+
+      return true;
+    }
+
 
     // *------------------------------
     //  000000013F8711A6 | 48 8B 04 24    | mov rax, qword ptr ss : [rsp] |
@@ -356,7 +467,8 @@ namespace HookEngine {
 
   bool HookEngine::installHookForTemplate(uintptr_t realAddr, uintptr_t hookAddr, HookInfo** hookInfo /*= nullptr*/)
   {
-    return this->_d->installHookForTemplate(realAddr, hookAddr, hookInfo);
+    return this->_d->installHookForTemplateLongJump(realAddr, hookAddr, hookInfo);
+    //return this->_d->installHookForTemplate(realAddr, hookAddr, hookInfo);
   }
 
 }

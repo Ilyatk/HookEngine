@@ -6,6 +6,35 @@
 
 namespace HookEngine {
 
+  class CaveInfo
+  {
+  public:
+    CaveInfo()
+    {
+      startAddress = NULL;
+      currentAddress = NULL;
+      totalSize = 0;
+      unusedSize = 0;
+    }
+
+    CaveInfo(uint32_t startAddress, uint32_t currentAddress, uint32_t totalSize, uint32_t unusedSize)
+    {
+      startAddress = startAddress;
+      currentAddress = currentAddress;
+      totalSize = totalSize;
+      unusedSize = unusedSize;
+    }
+
+    ~CaveInfo()
+    {
+    }
+
+    uint32_t startAddress;
+    uint32_t currentAddress;
+    uint32_t totalSize;
+    uint32_t unusedSize;
+  };
+
   CodeCaveFinder::CodeCaveFinder()
   {
     SYSTEM_INFO info;

@@ -11,34 +11,7 @@
 
 namespace HookEngine {
 
-  typedef struct CAVEINFO
-  {
-    uint32_t startAddress;
-    uint32_t currentAddress;
-    uint32_t totalSize;
-    uint32_t unusedSize;
-
-    CAVEINFO()
-    {
-      startAddress = NULL;
-      currentAddress = NULL;
-      totalSize = 0;
-      unusedSize = 0;
-    }
-
-    CAVEINFO(uint32_t startAddress, uint32_t currentAddress, uint32_t totalSize, uint32_t unusedSize)
-    {
-      startAddress = startAddress;
-      currentAddress = currentAddress;
-      totalSize = totalSize;
-      unusedSize = unusedSize;
-    }
-
-    ~CAVEINFO()
-    {
-    }
-  } CaveInfo;
-
+  class CaveInfo;
   class CodeCaveFinder
   {
   public:
