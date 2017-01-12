@@ -313,6 +313,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Test\x64\SimpleTest.cpp" />
     <ClCompile Include="src\Test\x64\TemplateHook64.cpp" />
+    <ClCompile Include="src\Test\x64\WinAPIHook64.cpp" />
     <ClCompile Include="src\Test\x86\CdeclTest.cpp" />
     <ClCompile Include="src\Test\x86\FastcallTest.cpp" />
     <ClCompile Include="src\Test\x86\Sample.cpp" />
