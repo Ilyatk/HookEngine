@@ -141,32 +141,46 @@ namespace HookEngine {
       char* afterHookPtr = reinterpret_cast<char*>(afterHook);
       char* beforePtr = reinterpret_cast<char*>(realAddr);
 
-      int moveableSize = this->getCodeSize(realAddr, 5);
+      int moveableSize = this->getCodeSize(realAddr, 2);
+      if (moveableSize > 2 && moveableSize != 5 && moveableSize != 7) // if more then 2 bytes than try to get 5 or more bytes
+        moveableSize = this->getCodeSize(realAddr, 5);
       if (moveableSize <= 0)
         return false;
 
       bool realPrologFixed = false;
 
-      if (moveableSize == 5) {
-        if (*(uint8_t*)(beforePtr) == 0xE9) {
+      if (moveableSize == 2) {
+        if (*(uint8_t*)(beforePtr) == 0xEB) { // relative jmp
           realPrologFixed = true;
 
-          int32_t offset = *(int32_t*)(realAddr + 1);
-          uintptr_t actuallFunctionStart = realAddr + offset + 5;
+          int32_t offset = *(int8_t*)(realAddr + 1); // jmp rel8
+          uintptr_t actuallFunctionStart = realAddr + offset + moveableSize;
 
           *(uint16_t*)(afterHookPtr) = 0xB848; // mov rax, ...
           *(uintptr_t*)(afterHookPtr + 2) = actuallFunctionStart;
           *(uint16_t*)(afterHookPtr + 2 + sizeof(uintptr_t)) = 0xE0FF; // jmp rax
         }
       }
-      if (moveableSize == 7) {
+      else if (moveableSize == 5) {
+        if (*(uint8_t*)(beforePtr) == 0xE9) { // relative jmp
+          realPrologFixed = true;
+
+          int32_t offset = *(int32_t*)(realAddr + 1); // jmp rel16/rel32
+          uintptr_t actuallFunctionStart = realAddr + offset + moveableSize;
+
+          *(uint16_t*)(afterHookPtr) = 0xB848; // mov rax, ...
+          *(uintptr_t*)(afterHookPtr + 2) = actuallFunctionStart;
+          *(uint16_t*)(afterHookPtr + 2 + sizeof(uintptr_t)) = 0xE0FF; // jmp rax
+        }
+      }
+      else if (moveableSize == 7) {
         if (*(uint8_t*)(beforePtr) == 0x48
           && *(uint8_t*)(beforePtr + 1) == 0xff
-          && *(uint8_t*)(beforePtr + 2) == 0x25) {
+          && *(uint8_t*)(beforePtr + 2) == 0x25) { // absolute jmp
           realPrologFixed = true;
 
           int32_t offset = *(int32_t*)(realAddr + 3);
-          uintptr_t functionStartPointer = realAddr + offset + 7;
+          uintptr_t functionStartPointer = realAddr + offset + moveableSize;
           uintptr_t actuallFunctionStart = *(uintptr_t*)(functionStartPointer);
 
           *(uint16_t*)(afterHookPtr) = 0xB848; // mov rax, ...
