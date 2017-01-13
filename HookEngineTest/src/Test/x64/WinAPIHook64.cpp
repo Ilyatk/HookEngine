@@ -7,7 +7,7 @@
 
 #include <HookEngine/HookEngine.h>
 
-using fnVirtualProtect = decltype(::VirtualProtect)*;
+typedef BOOL(WINAPI *fnVirtualProtect)(LPVOID, SIZE_T, DWORD, PDWORD);
 static HookEngine::HookInfo* VirtualProtectInfo;
 
 int VirtualProtectHook(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect)
@@ -29,7 +29,7 @@ TEST(Sample, hookVirtualProtect)
   ASSERT_TRUE(true);
 }
 
-using fnMessageBoxW = decltype(::MessageBoxW)*;
+typedef int(WINAPI *fnMessageBoxW)(HWND, LPCTSTR, LPCTSTR, UINT);
 static HookEngine::HookInfo* MessageBoxWHookInfo;
 
 static bool test = false;
