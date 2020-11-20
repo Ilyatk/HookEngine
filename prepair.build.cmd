@@ -10,4 +10,4 @@
 @copy "!bin\HookEngine\Release-MT\x64\HookEngine-x64-mt.lib" ReleaseBundle\lib\
 @copy "!bin\HookEngine\Release-MT\x86\HookEngine-x86-mt.lib" ReleaseBundle\lib\
 
-@xcopy /Y /I /R /E "HookEngine\include\HookEngine\*.h" "ReleaseBundle\include\HookEngine\\"
+@xcopy /Y /I /R /E "HookEngine\include\HookEngine\*.h" "ReleaseBundle\include\HookEngine\"
