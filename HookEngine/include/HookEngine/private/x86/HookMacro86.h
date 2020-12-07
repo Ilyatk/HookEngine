@@ -387,7 +387,7 @@ namespace HookEngine {
   {
     HookInfo *info = NULL;
     if (IsCdecl<CallingConvention>::Value) {
-      if (!instance()->fasthookForTemplateCdecl(
+      if (!::HookEngine::instance()->fasthookForTemplateCdecl(
         targetAddress,
         (uint32_t)StaticHookHelper<CallingConvention, ReturnType COMMA argDefinition>::hook,
         &info)) {
@@ -402,7 +402,7 @@ namespace HookEngine {
       }
     }
     else {
-      if (!instance()->fasthookForTemplate(
+      if (!::HookEngine::instance()->fasthookForTemplate(
         targetAddress,
         (uint32_t)StaticHookHelper<CallingConvention, ReturnType COMMA argDefinition>::hook,
         &info)) {

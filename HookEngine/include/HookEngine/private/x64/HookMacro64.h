@@ -418,7 +418,7 @@ namespace HookEngine {
   {
     HookInfo *info = NULL;
 
-    if (!instance()->installHookForTemplate(
+    if (!::HookEngine::instance()->installHookForTemplate(
       targetAddress,
       (uintptr_t)StaticHookHelper<CallingConvention, ReturnType COMMA argDefinition>::hook,
       &info)) {
