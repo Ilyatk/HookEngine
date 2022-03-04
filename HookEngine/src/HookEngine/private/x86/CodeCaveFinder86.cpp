@@ -39,7 +39,7 @@ namespace HookEngine {
     return this->findCaveInCache(realAddr, hookAddr, cave);
   }
 
-  bool CodeCaveFinder::allocateCave(uint32_t realAddr, uint32_t hookAddr, CaveInfo *сaveInfo)
+  bool CodeCaveFinder::allocateCave(uint32_t realAddr, uint32_t hookAddr, CaveInfo *caveInfo)
   {
     uint64_t middle = ((uint64_t)realAddr + (uint64_t)hookAddr) / 2;
 
@@ -70,10 +70,10 @@ namespace HookEngine {
       if (memoryInfo.State == MEM_FREE) {
         LPVOID cave = VirtualAlloc((LPVOID)currentAddr, this->_pageSize, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
         if (cave != NULL) {
-          (*сaveInfo).startAddress = (uint32_t)cave;
-          (*сaveInfo).currentAddress = (uint32_t)cave;
-          (*сaveInfo).totalSize = this->_pageSize;
-          (*сaveInfo).unusedSize = this->_pageSize;
+          (*caveInfo).startAddress = (uint32_t)cave;
+          (*caveInfo).currentAddress = (uint32_t)cave;
+          (*caveInfo).totalSize = this->_pageSize;
+          (*caveInfo).unusedSize = this->_pageSize;
           return true;
         }
       }
@@ -95,10 +95,10 @@ namespace HookEngine {
       if (memoryInfo.State == MEM_FREE) {
         LPVOID cave = VirtualAlloc((LPVOID)currentAddr,  this->_pageSize, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
         if (cave != NULL) {
-          (*сaveInfo).startAddress = (uint32_t)cave;
-          (*сaveInfo).currentAddress = (uint32_t)cave;
-          (*сaveInfo).totalSize = this->_pageSize;
-          (*сaveInfo).unusedSize = this->_pageSize;
+          (*caveInfo).startAddress = (uint32_t)cave;
+          (*caveInfo).currentAddress = (uint32_t)cave;
+          (*caveInfo).totalSize = this->_pageSize;
+          (*caveInfo).unusedSize = this->_pageSize;
           return true;
         }
       }
@@ -109,9 +109,9 @@ namespace HookEngine {
     return false;
   }
 
-  bool CodeCaveFinder::findCaveInCache(uint32_t realAddr, uint32_t hookAddr, uint32_t *сave)
+  bool CodeCaveFinder::findCaveInCache(uint32_t realAddr, uint32_t hookAddr, uint32_t *cave)
   {
-    if (сave == NULL)
+    if (cave == NULL)
       return false;
 
     if (this->_caves.size() <= 0)
@@ -136,7 +136,7 @@ namespace HookEngine {
       if (hookDiff > (int64_t)INT_MAX)
         continue;
 
-      *сave = (*iter)->currentAddress;
+      *cave = (*iter)->currentAddress;
       (*iter)->currentAddress += CAVE_SIZE;
       (*iter)->unusedSize -= CAVE_SIZE;
       return true;
